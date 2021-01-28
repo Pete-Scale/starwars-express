@@ -8,7 +8,7 @@ const characters = [
         role: 'Jedi Master',
         forcePoints: 100000,
         age: 900,
-        avatar: 'https://static.wikia.nocookie.net/starwars/images/d/d6/Yoda_SWSB.png/revision/latest/top-crop/width/360/height/450?cb=20150206140125',
+        avatar: 'https://starwarsblog.starwars.com/wp-content/uploads/2015/11/yoda-the-empire-strikes-back-1536x864-349144518002.jpg',
         routeName: 'yoda'
     },
     {
@@ -24,7 +24,7 @@ const characters = [
         role: 'Sith Master',
         forcePoints: 100000,
         age: 88,
-        avatar: 'https://static.wikia.nocookie.net/starwars/images/d/d8/Emperor_Sidious.png/revision/latest?cb=20130620100935',
+        avatar: 'https://upload.wikimedia.org/wikipedia/en/8/8f/Emperor_RotJ.png',
         routeName: 'darthsidious'
     },
     {
@@ -40,6 +40,14 @@ const characters = [
 app.get('/', (req, res) => {
     res.send('May the force be with you.');
 });
+
+app.get('/api/characters', (req, res) => {
+    res.json(characters);
+});
+
+// app.get('/api/characters/:routeName', (req, res) => {
+//     res.end()
+// });
 
 app.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT}`);
