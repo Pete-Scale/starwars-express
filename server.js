@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-const characters = [
+const charactersArray = [
     {
         name: 'Yoda',
         role: 'Jedi Master',
@@ -14,7 +14,7 @@ const characters = [
     {
         name: 'Luke Skywalker',
         role: 'Jedi Knight',
-        forcePoints: 10000,
+        forcePoints: 30000,
         age: 23,
         avatar: 'https://i.pinimg.com/originals/f5/1c/54/f51c543269e3e87ae6753e8c1530e653.jpg',
         routeName: 'lukeskywalker'
@@ -30,7 +30,7 @@ const characters = [
     {
         name: 'Darth Vader',
         role: 'Sith Lord',
-        forcePoints: 50000,
+        forcePoints: 30000,
         age: 45,
         avatar: 'https://pm1.narvii.com/5808/e457a9054c0d1e7e9aa779ab24e7a9a53d36536c_00.jpg',
         routeName: 'darthvader'
@@ -42,12 +42,16 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/characters', (req, res) => {
-    res.json(characters);
+    res.json(charactersArray);
 });
 
-// app.get('/api/characters/:routeName', (req, res) => {
-//     res.end()
-// });
+app.get('/api/characters/:routeName', (req, res) => {
+    const targetCharacter = req.params.routeName;
+    const character = charactersArray.find(character => {
+        return character.routeName === targetCharacter;
+    });
+    res.json(character); 
+});
 
 app.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT}`);
